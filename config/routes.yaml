@@ -1,0 +1,45 @@
+controllers:
+    resource:
+        path: ../src/Controller/
+        namespace: App\Controller
+    type: attribute
+
+accueil:
+    path: /
+    controller: App\Controller\BibliothequeController::accueil
+
+inscription:
+    path: /inscription
+    controller: App\Controller\BibliothequeController::inscription
+
+book_add:
+    path: /book/add
+    controller: App\Controller\BibliothequeController::book_add
+
+book_edit:
+    path: /book/edit/{id}
+    controller: App\Controller\BibliothequeController::book_edit
+
+book_list:
+    path: /book/list
+    controller: App\Controller\BibliothequeController::book_list
+
+book_delete:
+    path: /book/delete/{id}
+    controller: App\Controller\BibliothequeController::book_delete
+
+user_deconnexion:
+    path: /deconnexion
+    controller: App\Controller\BibliothequeController::deconnexion
+
+user_connexion:
+    path: /connexion
+    controller: App\Controller\BibliothequeController::connexion
+
+user:
+    path: /user
+    controller: App\Controller\BibliothequeController::user
+
+user_delete:
+    path: /delete
+    controller: App\Controller\BibliothequeController::user_delete

@@ -1,0 +1,32 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Connexion{% endblock %}
+
+{% block body %}
+    <div class="container_form">
+        <div class="form">
+            <h1>Connexion</h1>
+            {{ form_start(form) }}
+                <div class="form-row">
+                    <label for="{{ form.username.vars.id }}">Nom d'utilisateur :</label>
+                    {{ form_widget(form.username) }}
+                </div>
+                <div class="form-row">
+                    <label for="{{ form.password.vars.id }}">Mot de passe :</label>
+                    {{ form_widget(form.password) }}
+                </div>
+                <div class="form-row">
+                    <input type="submit"value="Se connecter">
+                </div>
+            {{ form_end(form) }}
+            <p>Vous n'avez pas de compte</p>
+            <a href="{{path('inscription')}}"><input type="button" value="S'inscrire"></a>
+        </div>
+        {% for message in app.flashes('error_connexion') %}
+            <div>
+                {{ message }}
+            </div>
+        {% endfor %}
+    </div>
+    {% include 'footer/footer.html.twig' %}
+{% endblock %}

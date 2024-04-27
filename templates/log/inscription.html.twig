@@ -1,0 +1,32 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Inscription{% endblock %}
+
+{% block body %}
+    <div class="container_form">
+        <div class="form">
+            <h1>Inscription</h1>
+            {{ form_start(form) }}
+                <div class="form-row">
+                    <label for="{{ form.username.vars.id }}">Nom d'utilisateur :</label>
+                    {{ form_widget(form.username) }}
+                </div>
+                <div class="form-row">
+                    <label for="{{ form.password.vars.id }}">Mot de passe :</label>
+                    {{ form_widget(form.password) }}
+                </div>
+                <div class="form-row">
+                    <input type="submit" value="S'inscrire">
+                </div>
+            {{ form_end(form) }}
+            <p>Vous avez déjà un compte</p>
+            <a href="{{path('user_connexion')}}"><input type="button" value="Se connecter"></a>
+        </div>
+        {% for message in app.flashes('error_inscription') %}
+            <div>
+                {{ message }}
+            </div>
+        {% endfor %}
+    </div>
+    {% include 'footer/footer.html.twig' %}
+{% endblock %}

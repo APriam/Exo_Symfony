@@ -1,0 +1,55 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Liste des livre{% endblock %}
+
+{% block body %}
+    {% include 'nav/navbar.html.twig' %}
+    <div class="container">
+        <h1>Liste des Livres</h1>
+        <a href="{{ path('book_list') }}"><input type="button" value="Supprimer les filtres"></a>
+        <br>
+        <table>
+            <tr>
+                <th>
+                    {% if app.request.query.get('tri') == 'title_asc' %}
+                        <a href="{{ path('book_list', {'tri': inverseTri}) }}">Titre (A->Z)</a>
+                    {% elseif app.request.query.get('tri') == 'title_desc' %}
+                        <a href="{{ path('book_list', {'tri': inverseTri}) }}">Titre (Z->A)</a>
+                    {% else %}
+                        <a href="{{ path('book_list', {'tri': 'title_asc'}) }}">Titre</a>
+                    {% endif %}
+                </th>
+                <th>
+                    {% if app.request.query.get('tri') == 'author_asc' %}
+                        <a href="{{ path('book_list', {'tri': inverseTri}) }}">Auteur (A->Z)</a>
+                    {% elseif app.request.query.get('tri') == 'author_desc' %}
+                        <a href="{{ path('book_list', {'tri': inverseTri}) }}">Auteur (Z->A)</a>
+                    {% else %}
+                        <a href="{{ path('book_list', {'tri': 'author_asc'}) }}">Auteur</a>
+                    {% endif %}
+                </th>
+                <th>
+                    {% if app.request.query.get('tri') == 'date_asc' %}
+                        <a href="{{ path('book_list', {'tri': inverseTri}) }}">Date de publication +Ancien</a>
+                    {% elseif app.request.query.get('tri') == 'date_desc' %}
+                        <a href="{{ path('book_list', {'tri': inverseTri}) }}">Date de publication +Recent</a>
+                    {% else %}
+                        <a href="{{ path('book_list', {'tri': 'date_asc'}) }}">Date de publication</a>
+                    {% endif %}
+                </th>
+                <th>Description</th>
+            </tr>
+            {% for book in books %}
+                <tr>
+                    <td>{{ book.title }}</td>
+                    <td>{{ book.author }}</td>
+                    <td>{{ book.date|date('Y-m-d') }}</td>
+                    <td>{{ book.description }}</td>
+                    <td><a href="{{ path('book_edit', {'id': book.id}) }}"><input type="button" value="Modifier"></a></td>
+                    <td><a href="{{ path('book_delete', {'id': book.id}) }}"><input type="button" value="Supprimer"></a></td>
+                </tr>
+            {% endfor %}
+        </table>
+    </div>
+    {% include 'footer/footer.html.twig' %}
+{% endblock %}
