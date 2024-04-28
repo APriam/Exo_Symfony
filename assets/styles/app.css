@@ -87,11 +87,15 @@ nav input:hover{
     display: flex!important;
     flex-direction: row!important;
 }
-.presentation{
-    width: 80%;
+#presentation{
+    text-align: justify;
+    margin: 2%;
 }
 .horaire{
-    width: 20%;
+    background-color: #1f1e1e;
+    padding: 2%;
+    border-radius: 25px;
+    margin: 2%;
 }
 
 /*Commun book*/

@@ -18,7 +18,7 @@ use App\Service\SessionCheck;
 class BibliothequeController extends AbstractController
 {
     /**
-     * @Route("/", name="inscription")
+     * @Route("/inscription", name="inscription")
      */
     public function inscription(Request $request, EntityManagerInterface $entityManager, SessionInterface $session): Response
     {   
@@ -52,6 +52,9 @@ class BibliothequeController extends AbstractController
             'form' => $form->createView()
         ]);
     }
+    /**
+     * @Route("/connexion", name="connexion")
+     */
     public function connexion(Request $request, EntityManagerInterface $entityManager, SessionInterface $session): Response
     {
         if ($session->has('user_id')) {
@@ -81,6 +84,7 @@ class BibliothequeController extends AbstractController
             'form' => $form->createView()
         ]);
     }
+    
     public function deconnexion(SessionInterface $session): RedirectResponse{
         $session->remove('user_id');
         return $this->redirectToRoute('user_connexion');
@@ -234,7 +238,10 @@ class BibliothequeController extends AbstractController
         $entityManager->flush();
         return $this->redirectToRoute('user_deconnexion');
     }
-    public function accueil(){
+    public function accueil(SessionInterface $session){
+        if (!$session->has('user_id')) {
+            return $this->redirectToRoute('user_connexion');
+        }
         return $this->render('home/accueil.html.twig', [
         ]);
     }

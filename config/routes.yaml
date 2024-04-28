@@ -5,7 +5,7 @@ controllers:
     type: attribute
 
 accueil:
-    path: /
+    path: /accueil
     controller: App\Controller\BibliothequeController::accueil
 
 inscription:
@@ -33,7 +33,7 @@ user_deconnexion:
     controller: App\Controller\BibliothequeController::deconnexion
 
 user_connexion:
-    path: /connexion
+    path: /
     controller: App\Controller\BibliothequeController::connexion
 
 user:
