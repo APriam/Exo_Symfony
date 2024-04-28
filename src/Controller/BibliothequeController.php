@@ -91,7 +91,7 @@ class BibliothequeController extends AbstractController
     }
 
     /**
-     * @Route("/book/ajouter_livre", name="ajouter_livre")
+     * @Route("book/add", name="book_add")
      */
     public function book_add(Request $request, EntityManagerInterface $entityManager, SessionInterface $session) : Response {
         if (!$session->has('user_id')) {
@@ -103,6 +103,7 @@ class BibliothequeController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()){
             $entityManager ->persist($book);
             $entityManager -> flush();
+            return $this->redirectToRoute('book_add');
         }
         return $this->render('book/book_add.html.twig', [
             'form' => $form->createView()
